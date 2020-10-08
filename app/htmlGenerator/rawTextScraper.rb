@@ -7,7 +7,7 @@ class RawTextGenerator < TemplateGenerator
   class << self
     attr_accessor :content
 
-    def rawTextExtractor
+    def textExtractor
       rdoc = Nokogiri::HTML(URI.open(@url))
       @content = rdoc.css('body').inner_text
     end

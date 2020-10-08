@@ -8,10 +8,10 @@ class TemplateGenerator
     end
 
     def makeHtml
-      newFile = File.new(self.name+'.html', 'w')
+      newFile = File.new("./public/releaseNotes/#{self.name.downcase}.html", 'w')
 
       IO.write(newFile, %{
-      <section id="release_note">
+      <section id="#{self.name.downcase}">
         #{content}
       </section>
     })
