@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    margin: 0;
+}
+
+#side-panel{
+    flex-basis: 20%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+#display-note{
+    flex-basis: 80%;
+    height: 100%vh;
+}
