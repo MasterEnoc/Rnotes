@@ -7,15 +7,27 @@ var app = express();
 app.set('views', './app/views/');
 app.set('view engine', 'pug');
 
-app.use(express.static('./public/', {index: false}));
+app.use(express.static('public', {index: false}));
 
 app.get('/', (req, res)=> {
     readdir('./app/releaseNotes', (err, files)=>{
+
         let notes = files.map(file => parse(file).name);
 
         res.render('index', {notes:notes}, (err, html)=>{
             res.send(html);
         });
+    });
+});
+
+app.all('*', (req, res, next)=>{
+    next(res);
+});
+
+app.use((err, req, res, next)=>{
+    res.status(500);
+    res.render('404', {page:req._parsedOriginalUrl.pathname}, (err, html)=>{
+        res.send(html);
     });
 });
 
