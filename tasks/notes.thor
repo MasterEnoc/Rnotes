@@ -27,7 +27,7 @@ class Notes < Thor
 
   def list
 
-    Dir.new('./app/releaseNotes').each_child do |child|
+    Dir.new('./public/releaseNotes').each_child do |child|
       puts File.basename(child, '.*')
     end
 

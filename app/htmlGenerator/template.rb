@@ -11,8 +11,10 @@ class TemplateGenerator
       newFile = File.new("./public/releaseNotes/#{self.name.downcase}.html", 'w')
 
       IO.write(newFile, %{
-      <section id="#{self.name.downcase}">
+      <section class="container" id="#{self.name.downcase}">
+      <pre>
         #{content}
+      </pre>
       </section>
     })
     end

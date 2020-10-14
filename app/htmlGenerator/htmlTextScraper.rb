@@ -15,5 +15,16 @@ class HtmlTextGenerator < TemplateGenerator
       nodeSet.css('body')
     end
 
+    def makeHtml
+      newFile = File.new("./public/releaseNotes/#{self.name.downcase}.html", 'w')
+
+      IO.write(newFile, %{ #{content} })
+    end
+
+    def makeHtml
+      newFile = File.new("./public/releaseNotes/#{self.name.downcase}.html", 'w')
+      IO.write(newFile, %{ #{content} })
+    end
+
   end
 end

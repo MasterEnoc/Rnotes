@@ -1,11 +1,13 @@
 doctype html
 html
   head
+    title rnotes
     meta(charset='utf-8')
     link(rel='stylesheet' type='text/css' href='styles/rdocs.css')
   body
     section(class='layout' id='side-panel')
       h3(id='side-header') Select a note
       each note in notes
-        div(class='panel-element')=note
+        div(class='panel-element' id=note)=note
     section(class='layout' id='display-note')
+    script(type='text/javascript' src='/js/xhr.js')

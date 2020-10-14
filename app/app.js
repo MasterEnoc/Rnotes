@@ -10,7 +10,7 @@ app.set('view engine', 'pug');
 app.use(express.static('public', {index: false}));
 
 app.get('/', (req, res)=> {
-    readdir('./app/releaseNotes', (err, files)=>{
+    readdir('./public/releaseNotes', (err, files)=>{
 
         let notes = files.map(file => parse(file).name);
 
