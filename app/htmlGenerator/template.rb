@@ -1,4 +1,6 @@
 class TemplateGenerator
+  require 'nokogiri'
+  require 'open-uri'
 
   class << self
     attr_accessor :url, :content

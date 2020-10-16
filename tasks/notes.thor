@@ -23,14 +23,16 @@ class Notes < Thor
 
   end
 
-  desc 'list', 'List all release notes scrapers and generators'
+  desc 'list', 'List all release notes scrapers'
 
   def list
+    directoryShow('./app/releaseNotes')
+  end
 
-    Dir.new('./public/releaseNotes').each_child do |child|
-      puts File.basename(child, '.*')
-    end
+  desc 'downloaded', 'List all scraped release notes'
 
+  def downloaded
+    directoryShow('public/releaseNotes')
   end
 
   private
@@ -38,8 +40,14 @@ class Notes < Thor
   def textScraper(note)
     require_relative "../app/releaseNotes/#{note}.rb"
 
-    eval "#{note.capitalize}.textExtractor"
-    eval "#{note.capitalize}.makeHtml"
+    eval "#{note.capitalize}.textExtractor" # Call the class and use its class method
+    eval "#{note.capitalize}.makeHtml"      # Use the second class method to make an html file
+  end
+
+  def directoryShow(url)
+    Dir.new(url).each_child do |child|
+      puts File.basename(child, '.*')
+    end
   end
 
 end

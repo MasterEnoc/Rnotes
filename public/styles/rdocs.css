@@ -11,6 +11,7 @@ body {
     display: flex;
     color: rgb(201, 196, 189);
     margin: 0;
+    font-family: sans-serif;
 }
 
 #side-panel{
@@ -46,4 +47,8 @@ body {
 
 a {
     color: whitesmoke;
+}
+
+.active {
+    background-color: #7777ff ;
 }

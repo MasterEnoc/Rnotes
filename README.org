@@ -1,0 +1,93 @@
+* Table of contents
+- [[https://github.com/MasterEnoc/Rnotes#rnotes][Rnotes]]
+- [[https://github.com/MasterEnoc/Rnotes#quick-start][Quick Start]]
+- [[https://github.com/MasterEnoc/Rnotes#thor-commands][Thor Commands]]
+- [[https://github.com/MasterEnoc/Rnotes#ruby-scrappers][Ruby Scrappers]]
+
+* Rnotes
+Rnotes is a web server where you can add and watch different
+release notes of your favorite software.
+
+Uses [[https://www.ruby-lang.org/en/][Ruby]] with [[https://nokogiri.org/][nokogiri]] to scrap web pages and to retrieve
+releases notes, as web server uses [[https://nodejs.org/en/][NodeJs]] with [[https://expressjs.com/][express]].
+
+* Quick Start
+First you need to clone this repository and install NodeJs
+and Ruby dependencies, be sure to have installed NodeJs and
+Ruby with bundler.
+
+#+BEGIN_SRC bash
+  # Clone repository
+  git clone
+
+  # Change to rnotes directory
+  cd rnotes
+
+  # Install ruby dependencies
+  bundle install
+
+  # Install NodeJs dependencies
+  npm install
+#+END_SRC
+
+* Thor Commands
+Rnotes has some [[http://whatisthor.com/][thor]] commands, this commands let you list
+all available scrappers, run the scrappers and list what files
+are ready to be shown.
+
+You can see all command with the following commands:
+
+#+BEGIN_SRC ruby
+  # Show all available commands and what to do
+  thor list
+  # Show description and how to use a command
+  thor help <command>
+#+END_SRC
+
+* Ruby Scrappers
+Rnotes uses provides two classes that can scrap web pages. You can add
+more scrappers adding more ruby files in the directory
+[[./app/releaseNotes/][/app/releaseNotes/]] directory.
+
+Each scrappers should inherit any of the following classes:
+
+** RawTextGenerator class
+This class scraps txt files and gives them a simple HTML structure.
+
+This class is straightforward to use, you only have to inherit this
+class and add a self.url class variable pointing to the url where the
+release note you want to scrap is.
+
+#+BEGIN_SRC ruby
+  # Example of the usage of this class, found in app/releaseNotes/emacs.rb
+
+  require_relative '../htmlGenerator/rawTextScraper.rb'
+
+  class Emacs < RawTextGenerator
+    self.url = 'https://www.gnu.org/savannah-checkouts/gnu/emacs/news/NEWS.27.1'
+  end
+#+END_SRC
+
+** HtmlTextScraper
+This class scraps html files, the scrapped file can be modified using any
+nokogiri method or procedure.
+
+This class provides the self.htmlCleaner method, which purpose is
+modify or clean an html file and return this html file with the
+procedures applied. By default this method return <body>.
+
+#+BEGIN_SRC ruby
+  # Example of the usage of this class, found in app/releaseNotes/gcc.rb
+  require_relative '../htmlGenerator/htmlTextScraper'
+
+  class Gcc < HtmlTextGenerator
+    self.url =  'https://gcc.gnu.org/gcc-10/changes.html'
+
+    # method modified
+    def self.htmlCleaner(nodeSet)
+      nodeSet.css('.copyright').remove
+      nodeSet
+    end
+  end
+
+#+END_SRC

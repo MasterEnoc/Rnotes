@@ -1,15 +1,19 @@
 {
   "name": "rnotes",
   "version": "1.0.0",
-  "description": "\"Hub for all your release notes\"",
-  "main": "./app/app.js",
+  "description": "\"Web server and release notes scrapper"",
+    "main": "./app/app.js",
+    "repository": {
+        "type":"git",
+        "url":"https://github.com/MasterEnoc/Rnotes.git"
+    },
   "scripts": {
     "start": "node ./app/app.js"
   },
   "keywords": [
     "release_notes"
   ],
-  "author": "",
+  "author": "MasterEnoc",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "express": "^4.17.1",

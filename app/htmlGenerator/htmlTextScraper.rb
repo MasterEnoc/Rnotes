@@ -1,8 +1,6 @@
 require_relative 'template'
 
 class HtmlTextGenerator < TemplateGenerator
-  require 'nokogiri'
-  require 'open-uri'
 
   class << self
     attr_accessor :content
