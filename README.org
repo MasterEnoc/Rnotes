@@ -28,6 +28,9 @@ Ruby with bundler.
 
   # Install NodeJs dependencies
   npm install
+  
+  # start local server
+  npm start
 #+END_SRC
 
 * Thor Commands
